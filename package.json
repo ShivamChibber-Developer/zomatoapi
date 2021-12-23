@@ -1,0 +1,24 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "shivam",
+  "license": "ISC",
+  "dependencies": {
+    "body": "^5.1.0",
+    "chalk": "^5.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.2.2",
+    "nodemon": "^2.0.15",
+    "parser": "^0.1.4"
+  }
+}
