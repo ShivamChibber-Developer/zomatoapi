@@ -8,9 +8,11 @@ const port = process.env.PORT||8210;
 // adding mongo database
 const mongo = require('mongodb')
 const MongoClient = mongo.MongoClient;
+const cors = require('cors')
 // to recieve data from FORM 
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
+app.use(cors())
 // const mongourl = "mongodb://localhost:27017"
 const mongourl = "mongodb+srv://test:1234@cluster0.9u0ee.mongodb.net/zomato?retryWrites=true&w=majority"
 var db;
