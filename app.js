@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 app.use(cors())
 // const mongourl = "mongodb://localhost:27017"
-const mongourl = "mongodb+srv://test:1234@cluster0.9u0ee.mongodb.net/zomato?retryWrites=true&w=majority"
+// const mongourl = "mongodb+srv://test:1234@cluster0.9u0ee.mongodb.net/zomato?retryWrites=true&w=majority"
+const mongourl ="mongodb+srv://shivam:1234@cluster0.g43io.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 var db;
 // let col_name = "rastaurant"; 
 
