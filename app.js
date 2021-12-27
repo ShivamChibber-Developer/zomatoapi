@@ -39,7 +39,7 @@ app.get('/rastaurant', (req, res) => {
     if (req.query.stateId){
         query = {state_id:Number(req.query.stateId)}    
 } else if (req.query.mealtype_id){
-    query = {"mealTypes.mealtype_id":req.query.mealtype}
+    query = {"mealTypes.mealtype_id":Number(req.query.mealtype)}
 }
     // var cityId = req.params.cityId;
     // console.log(cityId);
@@ -74,7 +74,6 @@ app.get('/filter/:mealType', (req, res) => {
         "mealTypes.mealtype_id":Number(mealType)
     }
         }
-
         else if(req.query.lcost && req.query.hcost){
             query = {"mealTypes.mealtype_id":mealType,"Cuisines.cuisine_id":Number(req.query.cuisine)}
         }
