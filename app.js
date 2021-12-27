@@ -39,7 +39,7 @@ app.get('/rastaurant', (req, res) => {
     if (req.query.stateId){
         query = {state_id:Number(req.query.stateId)}    
 } else if (req.query.mealtype_id){
-    query = {"mealTypes.mealtype_id":Number(req.query.mealtype)}
+    query = {"mealTypes.mealtype_id":Number(req.query.mealtype_id)}
 }
     // var cityId = req.params.cityId;
     // console.log(cityId);
