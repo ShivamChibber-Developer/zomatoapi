@@ -52,7 +52,7 @@ app.get('/rastaurant', (req, res) => {
 
 //FILTER API 
 app.get('/filter/:mealType', (req, res) => {
-    var sort = {cost: 1};// for sorting high to low low to hig 
+    var sort = {cost: 1};// for sorting high to low low to high 
     var skip = 0;
     var limit = 1000000000;
     
@@ -65,24 +65,25 @@ app.get('/filter/:mealType', (req, res) => {
         limit = Number(req.query.limit);
     }
     var mealType = req.params.mealType;  
-    var query = {"type.mealtype":mealType};
+    var query = {"mealTypes.mealtype_id":Number(mealType)};
         var lcost = Number(req.query.lcost);// for cost greater and lesser 
         var hcost = Number(req.query.hcost);// for cost greater and lesser 
         if (req.query.cuisine && req.query.lcost && req.query.hcost){ // for cost greater and lesser 
         query={$and:[{cost:{$gt:lcost,$lt:hcost}}],
-        "Cuisine.cuisine":req.query.cuisine,
-        "type.mealtype":mealType
+        "Cuisines.cuisine_id":Number(req.query.cuisine),
+        "mealTypes.mealtype_id":Number(mealType)
     }
         }
+
         else if(req.query.lcost && req.query.hcost){
-            query = {"type.mealtype":mealType,"Cuisine.cuisine":req.query.cuisine}
+            query = {"mealTypes.mealtype_id":mealType,"Cuisines.cuisine_id":Number(req.query.cuisine)}
         }
     if(req.query.cuisine){
-        query = {"type.mealtype":mealType,"Cuisine.cuisine":req.query.cuisine}
+        query = {"mealTypes.mealtype_id":mealType,"Cuisines.cuisine_id":Number(req.query.cuisine)}
     }else if(req.query.lcost && req.query.hcost){
         var lcost = Number(req.query.lcost);
         var hcost = Number(req.query.hcost);
-        query={$and:[{cost:{$gt:lcost,$lt:hcost}}],"type.mealtype":mealType}
+        query={$and:[{cost:{$gt:lcost,$lt:hcost}}],"mealTypes.mealtype_id":Number(mealType)}
     }
     db.collection("rastaurant").find(query).sort(sort).skip(skip).limit(limit).toArray((err, result)=> {
         if (err) throw err;
@@ -93,7 +94,7 @@ app.get('/filter/:mealType', (req, res) => {
 //rRASTAURANT DETAILS 
 app.get('/details/:id', (req, res) => {
     var id = req.params.id;
-    db.collection("rastaurant").findOne({_id:id}, (err, result) => {
+    db.collection("rastaurant").find({rasturant_id:Number(id)}), ((err, result) => {
         if (err) throw err;
         res.send(result)
     });
