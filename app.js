@@ -99,6 +99,14 @@ app.get('/details/:id', (req, res) => {
     });
 });
 
+//rRASTAURANT Menu
+app.get('/menu/:id', (req, res) => {
+    var id = req.params.id;
+    db.collection("RestaurantMenu").find({rasturant_id:Number(id)}), ((err, result) => {
+        if (err) throw err;
+        res.send(result)
+    });
+});
 
 //QUERY PARAMS witout putting ? and give any id 1,2 in URL it will not work 
 // app.get('/rastaurant', (req, res) => {
