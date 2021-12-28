@@ -152,6 +152,14 @@ app.get('/mealType', (req,res) => {
 });
 
 
+// HOW TO FIND THE RAST ORDER WRT TO MENU ITEM 
+app.post('/menuItem', (req, res) => {
+    db.collection('menu').find({menu_id:{$in:req.body.ids}}).toArray((err, result) => {
+        if (err) throw err;
+        res.send(result)
+    })
+})
+
 // PLACE ORDER 
 app.post('/placeOrder', (req,res) => {
     console.log(req.body);
